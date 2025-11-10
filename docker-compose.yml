@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: clinicadmin/server
+    container_name: clinicadmin-server
+    restart: unless-stopped
+    env_file: ./server/.env
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./server/src:/app/src
+      - ./server/data:/app/data
+      - /app/node_modules
+    networks:
+      - clinicadmin-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: clinicadmin/client
+    container_name: clinicadmin-client
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      server:
+        condition: service_healthy
+    networks:
+      - clinicadmin-net
+
+networks:
+  clinicadmin-net:
+    driver: bridge

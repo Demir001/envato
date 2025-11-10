@@ -1,0 +1,49 @@
+/clinicadmin/
+├── client/                 # Frontend (React + Vite + TS)
+│   ├── public/
+│   ├── src/
+│   │   ├── api/            # React-query API çağrıları
+│   │   ├── assets/
+│   │   ├── components/     # Paylaşımlı bileşenler (UI, Layouts)
+│   │   ├── features/       # Modüller (Dashboard, Patients, Calendar...)
+│   │   ├── hooks/
+│   │   ├── locales/        # i18n JSON dosyaları (en, tr)
+│   │   ├── lib/            # Yardımcılar (date-fns, clsx)
+│   │   ├── pages/          # Rotalara karşılık gelen sayfalar
+│   │   ├── store/          # Zustand state yönetimi
+│   │   ├── styles/
+│   │   ├── types/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── vite-env.d.ts
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── tailwind.config.js
+│   └── tsconfig.json
+│
+├── server/                 # Backend (Node.js + Express + TS)
+│   ├── src/
+│   │   ├── api/            # Rota tanımları (v1)
+│   │   ├── config/         # Veritabanı, JWT
+│   │   ├── controllers/    # İstek mantığı
+│   │   ├── middleware/     # Auth, error handling, role
+│   │   ├── models/         # Veritabanı modelleri (veya Prisma/Sequelize)
+│   │   ├── services/       # İş mantığı
+│   │   ├── types/
+│   │   └── server.ts       # Ana Express sunucusu
+│   ├── .env.example
+│   ├── Dockerfile
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── docs/                   # Envato Belgeleri
+│   ├── README.md
+│   ├── INSTALL.md
+│   ├── CUSTOMIZE.md
+│   └── ENVATO_CHECKLIST.md
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml          # GitHub Actions
+│
+└── docker-compose.yml      # Tek komutla çalıştırma
